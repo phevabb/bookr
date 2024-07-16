@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block brand %}<img class="navbar-brand" src="{% static 'reviews/biglogo.png' %}" alt='ee' >{% endblock %}
+{% block content %}
+
+    <h3>Welcome to Bookr!</h3>
+
+    <!-- form begins here -->
+    <div> 
+    <form action="{% url 'home' %}" id="mainform" method="GET">  
+          
+
+        <!-- search box -->
+        <div class="input-group mb-3 col-lg-3" style=" padding-left: 1rem;">
+            <label class="input-group-text expandSearch shadow" for='cursor'><i class="bi   icon bi-search"  ></i></label>
+            {% render_field mainform.search  class='form-control' id='cursor' placeholder='Search' %}
+        </div>
+
+
+        <!-- for search in  -->
+        <div class="input-group mb-3 col-lg-3" style="padding-left : 1rem;">
+          <label class="input-group-text shadow" for="searchIN">Search In</label>
+          {% render_field mainform.title_contributor id='searchIN' class='form-control ' %}
+        </div>
+        
+        <div class="but">
+            <button type="submit" name="submit" value="submit" class="btn btn-dark" > Search </button>            
+        </div>
+        
+    </form>
+    </div>
+    
+    <div style="padding-top: .5rem">
+    <h4>Search Results for <em>{{ search_text  }}</em></h4>
+
+    </div>
+
+
+
+    <!-- book search answer-->
+<div style="padding: 3rem">
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Book Title</th>
+      <th>Contributors</th>
+      <th>Role</th>
+      <th>Publisher</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+      {% for contributor in book.contributors.all %}
+        <tr>
+          {% if forloop.first %}
+            <td rowspan="{{ book.contributors.count }}" > <a href="{% url 'detail_view' book.pk %}"> {{ book.title }}</td>
+          {% endif %}
+          <td>{{ contributor.first_names }} {{ contributor.last_names }}</td>
+          <td>{{ contributor.bookcontributor_set.first.role }}</td>
+          {% if forloop.first %}
+            <td rowspan="{{ book.contributors.count }}">{{ book.publisher }}</td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    {% endfor %}
+  </tbody>
+</table>
+
+</div>
+
+
+
+
+
+{% endblock %}
