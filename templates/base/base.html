@@ -42,11 +42,20 @@
               </li>
                 
               <li class="nav-item active">
-                <a class="nav-link" href="/books/ "> All Books <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{% url 'books_list' %}"> All Books <span class="sr-only">(current)</span></a>
               </li>
+              
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'publisher_create' %}">Add Publishers <span class="sr-only">(current)</span></a>
+              </li>  
                 
               <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                  <div class="nav-link">
+                      <form method="post" action="{% url 'logout' %}"> {% csrf_token %}
+                            <button type="submit">Logout</button>
+                      </form>
+                  </div>
+                  
               </li>
                 
             </ul>
@@ -56,15 +65,25 @@
               <input  value="" class="form-control mr-sm-2" type="search" placeholder="Search book title" aria-label="Search" name="search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-              
-              
-          </div>
+              </div>
         </nav>
-         {% block content %}
+
+
+        <div class="container-fluid">
         
-             
-             
-        {% endblock %}
+            {% for message in messages %}
+                <div class="alert alert-{% if message.level_tag == "error" %}danger{% else %}{{ message.level_tag }}{% endif %}" role='alert'>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        
+            {% block content %}
+                <h1>Welcome Home!</h1>
+            {% endblock %}
+        </div>
+
+
+
   <!-- Copyright -->
   <footer class="page-footer font-small blue">
     <div class="footer-copyright text-center py-3">© 2020 Copyright:

@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block brand %}<img class="navbar-brand" src="{% static 'reviews/biglogo.png' %}" alt='ee' >{% endblock %}
+
+
+{% block content %}
+
+    <!-- for the title -->
+    {% block title %}
+        {% if instance %}
+            
+            Editing {{ model_type }} "{{ instance }}"
+        {% else %}
+            New {{ model_type }}
+            
+        {% endif %}
+    {% endblock %} 
+    <!-- end of block title-->
+    
+    
+    
+    
+    <!-- heading -->    
+        <h2> 
+            {% if instance  %}
+                Editing {{ model_type }} <em> "{{ instance }}"</em>
+            {% else %}
+                New {{ model_type }}
+            {% endif %}
+        </h2>
+    <!-- end heading -->
+    
+          
+        
+        <!-- form -->
+        <form method="post">
+        
+        <!-- publisher Name -->
+        {% csrf_token %}
+        <div class=" mb-3 col-lg-3" style="padding-left : 1rem;">
+              <label class="form-label " for="name">Name</label>
+              {% render_field pub_form.name type="text" id='name' class='form-control' placeholder='Publisher name' %}
+        </div>
+         
+        <!-- publisher website -->
+        <div class=" mb-3 col-lg-3 " style="padding-left: 1rem; ">
+            <label class="form-label" for="website"> Website </label>
+            {% render_field pub_form.website type="text" id="website" class="form-control" placeholder="Enter Website" %}            
+        </div>
+            
+        <!-- publisher email -->
+        <div class="mb-3 col-lg-3 ">
+              <label for="email" class="form-label">Email address</label>
+            {% render_field pub_form.email type="email" id="email" class="form-control" placeholder="name@example.com" %}
+        </div>
+        <br>
+        
+        <!-- button -->
+        <button type="submit" class="btn btn-primary">
+            {% if instance %}
+                Save
+            {% else %}
+                create
+            {% endif %}
+        </button>
+        </form>
+             
+    <!-- end of/ form-->
+    
+    
+{% endblock %}

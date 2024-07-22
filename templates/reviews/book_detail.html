@@ -18,6 +18,10 @@
         {% if not reviews %}
             <hr>
             <h3>Be the first one to write a review.</h3>
+            
+
+
+
       {% else %}
             <span class="text-info">Overall Rating: </span><span class="badge badge-primary badge-pill">{{ book_rating }}</span>
             <br>
@@ -39,10 +43,38 @@
                         <span class="text-info">Rating: </span><span class="badge badge-secondary badge-pill">{{ review.rating }}</span>
                         <br>
                         <span class="text-info">Creator: </span><span>{{ review.creator.username }}</span>
+
                         <br>
+                  <a href="{% url 'review_edit' book.pk review.pk %}" class="btn btn-dark"> Edit Review</a>
+
                   </li>
             {% endfor %}
             </ul>
     
     {% endif %}
+  <span>
+  <a href="{% url 'review_create' book.pk  %}" class="btn btn-primary"> Add Review</a>
+  <a href="{% url 'book_media' book.pk  %}" class="btn btn-primary" >{% if book.cover %}Edit  cover{% else %} Add a cover {% endif %}</a>
+  
+  
+  </span>  
+    <br>
+     {% if book.cover %}
+    
+        <img src=" {{ book.cover.url }} "  alt="img">
+    {% endif %}
+    
+    <br>
+    
+    {% if book.sample %}
+        
+        <span class="text-info" >SAMPLE</span>
+        <span><a href="{{ book.sample.url }}">Download</a></span>
+    
+    {% endif %}
+    
+    
+    
+    
+    
 {% endblock %}

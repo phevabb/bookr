@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block brand %}<img class="navbar-brand" src="{% static 'reviews/biglogo.png' %}" alt='ee' >{% endblock %}
+
+
+{% block content %}
+
+    <!-- for the title -->
+    {% block title %}
+        {% if instance %}
+            
+            Editing {{ model_type }} "{{ instance }}"
+        {% else %}
+            New {{ model_type }} for "{{ book }}"
+            
+        {% endif %}
+    {% endblock %} 
+    <!-- end of block title-->    
+    <form method="post">
+    {% csrf_token %}
+    {{ rev_form.as_p }}
+    
+ 
+    
+    <button type="submit" class="btn btn-primary">
+            {% if instance %}
+                Update Review
+            {% else %}
+                create Review
+            {% endif %}
+    </button>
+    </form>
+    
+    <!-- end of/ form-->
+    
+    
+{% endblock %}

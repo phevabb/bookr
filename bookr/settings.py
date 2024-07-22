@@ -1,10 +1,8 @@
-
 import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -16,7 +14,6 @@ SECRET_KEY = "django-insecure-b1dhmx31j8i1ao!mef@dn0i&ev-p+_y2k)sj5w^f(7(0q-oh^m
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -45,7 +42,7 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-ROOT_URLCONF = 'bookr.urls'
+ROOT_URLCONF = "bookr.urls"
 
 TEMPLATES = [
     {
@@ -65,7 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "bookr.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -75,7 +71,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -95,7 +90,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -106,7 +100,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -124,4 +117,19 @@ INTERNAL_IPS = [
     # ...
 ]
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+LOGIN_REDIRECT_URL = '/'
+
+# settings.py
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'phevab1@gmail.com'
+EMAIL_HOST_PASSWORD = 'pmjvadvshspkkzpv'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'phevab1@gmail.com'
+
+

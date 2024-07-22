@@ -1,0 +1,9 @@
+Please note that you do not need to copy any code from the previous figure, since 
+all file contents are present in the previous sections. For your convenience, copies 
+of all files can also be found online at https://github.com/rasbt/pythonmachine-learning-book-3rd-edition/tree/master/ch09/1st_flask_app_2.
+Having set up our modified Flask web application, we can run it locally by executing 
+the following command from the application's main directory:
+python3 app.py
+Then, to see the resulting web page, enter the IP address shown in your terminal, 
+which is usually http://127.0.0.1:5000/, into your web browser to view the 
+rendered web app as summarized in the following figure

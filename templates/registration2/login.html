@@ -1,0 +1,106 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Source+Sans+Pro&display=swap">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    
+    <title>Book Review</title>
+  </head>  
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <body>
+    <!-- begins here -->
+    {% load widget_tweaks %}
+    {% block brand %}
+      <img class="navbar-brand" src="{% static 'reviews/biglogo.png' %}" alt='ee'>
+    {% endblock %}
+    {% load i18n static %}
+
+    {% if form.errors and not form.non_field_errors %}
+      <p class="errornote">
+        {% if form.errors.items|length == 1 %}
+          {% trans "Please correct the error below." %}
+        {% else %}
+          {% trans "Please correct the errors below." %}
+        {% endif %}
+      </p>
+    {% endif %}
+
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        <p class="errornote">{{ error }}</p>
+      {% endfor %}
+    {% endif %}
+
+    <div id="content-main">
+      {% if user.is_authenticated %}
+        <p class="errornote">
+          {% blocktrans trimmed %}
+            You are authenticated as {{ username }}, but are not authorized to
+            access this page. Would you like to login to a different account?
+          {% endblocktrans %}
+        </p>
+      {% endif %}
+        <div class="col-6 col-sm-6 col-md-6 col-lg-4 offset-3 offset-sm-3 offset-md-3 offset-lg-4 shadow formm">
+            <!-- form begins -->
+          <form action="{% url 'login' %}" method="post" id="login-form">
+            {% csrf_token %}
+            
+            <!-- for username -->
+            <div class="form-row " style="padding-left:1rem;">
+              {{ form.username.errors }}
+              <label class="form-label" for="name">Username</label>
+              {% render_field form.username type="text" id='name' class='form-control' placeholder='Username' %}
+            </div>
+            
+            <!-- for password -->
+            <div class="form-row " style="padding: 1rem;">
+              {{ form.password.errors }}
+              <label class="form-label" for="password">Password</label>
+              {% render_field form.password type="password" id='password' class='form-control' placeholder='Password' %}
+              <input type="hidden" name="next" value="{{ next }}">
+            </div>
+            
+            {% url 'password_reset' as password_reset_url %}
+            
+            <!-- if -->
+            {% if password_reset_url %}
+              <div class="password-reset-link">
+                <a href="{{ password_reset_url }}">{% trans 'Forgotten your password or username?' %}</a>
+              </div>
+            {% endif %}
+            
+            <!-- Submit -->
+        <div class="submit-row d-flex justify-content-center" style="padding:0.5rem;">
+          <input class="btn btn-primary" type="submit" value="{% trans 'Log in' %}">
+        </div>
+          </form>
+            
+        </div>
+          
+    
+    </div>
+
+    <!-- Copyright -->
+    <footer class="page-footer font-small blue">
+      <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://www.packtpub.com"> Packt Publications</a>
+        <p>Website by: Packt Publications</p>
+        <p>Contact information: <a href="mailto:email@example.com">email@example.com</a></p>
+      </div>
+    </footer>
+    <!-- Copyright -->
+  </body>
+</html>

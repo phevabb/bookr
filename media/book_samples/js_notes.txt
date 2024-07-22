@@ -1,0 +1,188 @@
+var is locked in function scope. let is locked in function scope as well.
+var is not locked in block scope. let is still locked in blocked scope
+const is scoped in block
+
+var = hoisted
+let = NOT hoisted
+
+var accepts  redundant declarations
+let disallows redundant declarations
+conts disallows redundant declarations
+
+console.log(window.age)  				#works with var
+console.log(window.age)  				#does not work with let
+
+setTimeout(() => console.log(i), 3000)                	#wait for 3 sec before executing the ananymos function
+
+Always use let or const for variables declared inside loops.
+const is the same as let. but const cannot be changed
+
+
+		#data type#
+(primitive data type)
+1. undefined    The Undefined type has only one value (undefined) assign null to variables that are empty and unknown    no methods
+2. null		The null type has only one value(null)		no methods
+3. Boolean 	(true, false)
+4. Number 	(1, 2, 3, 4, 5, 6, 7 etc)
+5. BigInt	(99999999999.. huge numbers)
+6. String 	("Emmanuel", " Philip", "Rice")
+7. Object	( name:"Alfred", age=12, colour:"blue", function, null)
+8. symbols      (to make sure values and type are not equal. even if the type and values are the same)
+
+
+
+*you can't define your own data types in js*
+*Don't Use var*
+
+
+of / forEach       #use in arrays only
+example of forEach
+const arr = ["squirrel", "alpaca", "buddy"];
+arr.forEach(e => console.log(e));
+
+
+in                 #use in objects
+
+##### Event Handlers ##### (takes one handler at a time. works in html)
+onClick
+
+event handlers can be added by the following:
+1. directly in html
+[example]
+          **
+<div id="one" onclick="stop()">Don't click here!</div>
+
+	 **
+
+2. directly in the browser console
+[example_1]
+	**
+document.getElementById("one").onclick = function () { 
+alert("Auch! Stop!"); 
+}
+	**
+
+3. using still in html but executed in<Script></script> tag in the html page
+[example]
+	**
+
+ <script>
+ function display(el){
+ console.log(el);
+ }
+ </script>
+ <button onclick="display('HELLO')">Click here!</button>
+
+	**
+
+map() method works with arrays and objects (all iterables). they loop through arrays, it returns a new array.         #map
+
+######### event listerners #########
+(works in js and can take multiple handlers. )
+(does not use on prefix)
+(normally uses window.onload )
+[example]
+window.onload = function() {
+ document.getElementById("square").addEventListener("click", 
+changeColor);
+
+
+
+If you need two events to happen when the DOM is loaded, you will 
+need two addEventListener() calls in your JavaScript
+
+in JSX, we're dealing with HTML attributes, and attributes always require their values to be strings.
+
+className = "rice"
+####################################################################################
+****************************************** OOP IN JS********************************
+       				* [PRIMITIVE DATA TYPES ] *
+1. Boolean   		true , false
+2. Number    		1, 3, 4, 
+3. string    		' food ', " rice ", " book", "cat"
+4. null      		null
+5. undefined 		undefined
+
+variable containing a primitive value uses its own 
+ storage space, changes to one variable are not reflected on the other.
+ PRIMITIVE DATA TYPES HAVE PRIMITIVE METHODS
+
+                              * [ REFERENCE DATA TYPE ] *
+
+1. Array           [3, "rice", " food", " nice" , 89,]
+2. object           a generic onject
+3. function         a function
+4. Date              a date and time
+5. Error            runtime error
+6. rEgex              regular expression.
+
+
+a. reference values are Objects. 
+b. hence all reference types are objects.
+c. they created with the new keyword.
+d. leteral form of creating objects does not use the new 
+    keyword
+e. When you assign an object to a variable, 
+    you’re actually assigning a  pointer.
+
+example
+______________________________
+
+obj1 = dog= {
+    namee: "kuku",
+    age : 12,
+    color : "blue",
+}
+____________________________________
+1. dog is an object assigned to variable obj1.
+2. therefore dog becomes a value. a reference value.
+3. passing dog to obj1 only passes the address (reference)
+    of dog such as x1160 to the variable obj1. but not 
+    the data itself.
+4. this applies to all other reference data types
+
+*************************** checking for types
+1. reference types are trickier to identify because, for all reference 
+    types other than functions, typeof returns "object".
+
+2. use instancof instead of typeof:
+console.log(items instanceof Array); // true
+
+4. every every reference type inherits from Object.
+
+5. Array.isArray(name_of_array) is the best way to identify arrays:
+
+
+####################################################################################
+****************************************** Functions ********************************
+1. Function hoisting happens only for function declarations
+    because the function name is known ahead of time. 
+2. Function expressions, on the other hand, cannot be hoisted 
+    because the functions can be referenced only through a variable.
+3. you can pass any number of parameters to any function.
+
+##############################################################################Qqq###########
+****************************************** Properties ********************************
+1. objects can either contain data properties or( Accessor properties ) getter and setter properties
+
+example:
+
+
+
+(for in  ) pulls the index.
+(for of ) pulls the actual value
+1. father OBJECT has some general methods that all small objects can use.
+2. The name of these methods are called prototype properties
+
+attributes: things that can be done to them.
+
+examples of attributes:
+enumerable
+configurable
+writable 
+
+
+##############################################################################Qqq###########
+****************************************** Constructors and Prototypes ********************************
+
+

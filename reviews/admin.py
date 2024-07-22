@@ -15,9 +15,9 @@ class BookContributorAdmin(admin.ModelAdmin):
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('publisher', 'isbn', 'title', )
-    list_editable = ('title', )  # Make 'title', 'publisher', and 'isbn' editable
-    list_display_links = ('publisher', 'isbn')
+    list_display = ('title', 'publisher', 'isbn', 'sample', 'cover')
+
+    list_display_links = ('title', 'publisher', 'isbn')
 
 
 class PublisherAdmin(admin.ModelAdmin):
