@@ -17,7 +17,10 @@
         <br>
         {% if not reviews %}
             <hr>
+            {% if user.is_authenticated %}
             <h3>Be the first one to write a review.</h3>
+                {% else %}
+                {% endif %}
             
 
 
@@ -53,9 +56,12 @@
     
     {% endif %}
   <span>
+  {% if user.is_authenticated %}
+    
   <a href="{% url 'review_create' book.pk  %}" class="btn btn-primary"> Add Review</a>
   <a href="{% url 'book_media' book.pk  %}" class="btn btn-primary" >{% if book.cover %}Edit  cover{% else %} Add a cover {% endif %}</a>
-  
+      {% else %}
+  {% endif %}
   
   </span>  
     <br>

@@ -1,5 +1,19 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
+
+  .welcome-div {
+    color: white;
+  }
+
+  .welcome-div:hover {
+    color: lightgray; /* Change this to the color you want on hover */
+  }
+
+
+
+
+
+
 #submit{
 
     margin-top: 20px;
@@ -7,6 +21,8 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+
 .but{
     padding-left: 5rem;
     padding-top: 1rem;

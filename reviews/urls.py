@@ -23,9 +23,11 @@ urlpatterns = [
     path("books/media/<int:pk>", views.book_media, name='book_media'),
 
 
-    #  big one
+
+    #  Auths
 
     path("login/", views2.LoginView.as_view(), name="login"),
+    path("accounts/login/", views2.LoginView.as_view(), name="login"),
     path("logout/", views2.LogoutView.as_view(), name="logout"),
     path(
         "password_change/", views2.PasswordChangeView.as_view(), name="password_change"

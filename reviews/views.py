@@ -7,10 +7,20 @@ from .forms import MainSearch_form, PublisherForm, ReviewForm, BookForm, BookMed
 from .models import Book, Contributor, Publisher, Review
 from .utils import average_rating
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core.exceptions import PermissionDenied
 
-# cbvs
+
+def is_staff_user(user):
+    return user.is_staff
+
+def base(request):
+    return render(request, 'base/base.html')
+def profile(request):
+    return render(request, 'reviews/profile.html')
 
 
+@login_required
 def book_media(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
@@ -56,6 +66,7 @@ def book_edit(request, bo_pk=None):
                    "book": book, })
 
 
+@login_required
 def review_edit(request, b_pk=None, r_pk=None):
     #  First, create instance containers
     if b_pk is not None:
@@ -65,6 +76,9 @@ def review_edit(request, b_pk=None, r_pk=None):
 
     if r_pk is not None:
         review = get_object_or_404(Review, pk=r_pk)
+        user = request.user
+        if not user.is_staff and review.creator.id != user.id:
+            raise PermissionDenied
     else:
         review = None
 
@@ -92,11 +106,18 @@ def review_edit(request, b_pk=None, r_pk=None):
 #  this view can requests via the following:
 #  1. a normal get from /publisher/new/
 #  2. a post with or without key form "publisher/<int:pk>/
+@login_required
 def publisher_edit(request, pk=None):
     if pk is not None:
         publisher = get_object_or_404(Publisher, pk=pk)
+        user = request.user
+        if not user.is_staff:
+            raise PermissionDenied
     else:
         publisher = None
+        user = request.user
+        if not user.is_staff:
+            raise PermissionDenied
     if request.method == "POST":
         form = PublisherForm(request.POST, instance=publisher)  # 1
         if form.is_valid():  # we must validate the data.
