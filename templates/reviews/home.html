@@ -38,7 +38,9 @@
     <!-- end of heading-->
 
 
-
+<a class="nav-link" href="{% url 'book_create' %}">Add record</a>
+    
+    
     <!-- book search answer on a table-->
     <div style="padding: 3rem">
         <table class="table table-striped table-hover">
@@ -55,7 +57,7 @@
               {% for contributor in book.contributors.all %}
                 <tr>
                   {% if forloop.first %}
-                    <td rowspan="{{ book.contributors.count }}" > <a href="{% url 'detail_view' book.pk %}"> {{ book.title }}</td>
+                    <td rowspan="{{ book.contributors.count }}" > <a href="{% url 'detail_view' book.pk %}"> {{ book.title }} </td>
                   {% endif %}
                   <td>{{ contributor.first_names }} {{ contributor.last_names }}</td>
                   <td>{{ contributor.bookcontributor_set.first.role }}</td>

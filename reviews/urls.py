@@ -2,8 +2,10 @@ from django.urls import path
 from django.conf import settings
 from . import views, views2
 from django.conf.urls.static import static
+from . import api_views
 
 urlpatterns = [
+    path('api/first_api_view/', api_views.first_api_view),
     path("books/", views.books_list, name="books_list"),
     path("book/<int:pk>/", views.detail_view, name="detail_view"),
     path("", views.home, name="home"),

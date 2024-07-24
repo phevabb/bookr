@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+    
+<div style="padding:0.5rem;">
+
+</div>
+    <div class="col-lg-4 col-md-4 col-sm-4 offset-3 offset-sm-3 offset-md-3 offset-lg-4 shadow" style="padding-top:1rem;">
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- for mame-->
+            <div>
+                <label class="form-labell" for="name" >Name</label>
+                {% render_field form.name type="text" id='name' placeholder="Enter name" class='form-control' %}
+            </div>
+            
+            <!-- for author-->
+            <div>
+                <label for="author" class="form-labell">Author</label>
+                {% render_field form.author type="text" id="author" class="form-control" placeholder="Enter author" %}
+            </div>
+                    
+            <!--for button -->
+            <button id="submit" type="submit" class="btn btn-primary" value="submit" name="submit">
+                Save Record
+            </button>
+            <div style="padding-top: .4rem;"></div>
+                
+        </form>
+    
+    </div>
+
+
+
+{% endblock %}

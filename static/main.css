@@ -4,11 +4,24 @@
   .welcome-div {
     color: white;
   }
+#submit{
+
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
   .welcome-div:hover {
     color: lightgray; /* Change this to the color you want on hover */
   }
-
+.form-labell{
+    padding-left: 1rem;
+    left: 9rem;
+    font-weight: bold;
+    color: #33322a;
+    text-align: center;
+}
 
 
 
